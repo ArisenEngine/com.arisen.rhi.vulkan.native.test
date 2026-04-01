@@ -2,6 +2,16 @@
 #include "../RHITestBase.h"
 #include "RHI/Core/RHIDevice.h"
 #include "RHI/Core/RHIFactory.h"
+#include "RHI/Enums/Buffer/EBufferUsage.h"
+#include "RHI/Enums/Memory/EMemoryPropertyFlagBits.h"
+#include "RHI/Enums/Memory/ESharingMode.h"
+#include "RHI/Enums/Image/EFormat.h"
+#include "RHI/Enums/Image/EImageType.h"
+#include "RHI/Enums/Image/EImageUsageFlagBits.h"
+#include "RHI/Enums/Image/EImageLayout.h"
+#include "RHI/Enums/Image/ESampleCountFlagBits.h"
+#include "RHI/Enums/Image/EImageTiling.h"
+#include "RHI/Descriptors/RHIResourceDescriptors.h"
 
 namespace ArisenEngine::Testing
 {

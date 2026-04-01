@@ -5,8 +5,11 @@
 
 #include "RHI/Core/RHIDevice.h"
 #include "RHI/Core/RHIFactory.h"
-#include "../../../../Core/Core.RHI/RHI/Core/RHIDevice.h"
 #include "RHI/Core/RHIInspector.h"
+#include "RHI/Descriptors/RHIResourceDescriptors.h"
+#include "RHI/Enums/Memory/ERHIMemoryUsage.h"
+#include "RHI/Enums/Memory/ESharingMode.h"
+#include "RHI/Enums/Buffer/EBufferUsage.h"
 
 
 namespace ArisenEngine::Testing

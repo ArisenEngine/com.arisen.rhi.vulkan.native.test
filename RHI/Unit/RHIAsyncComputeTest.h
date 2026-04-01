@@ -11,6 +11,16 @@
 #include "RHI/Pipeline/RHIPipelineState.h"
 #include "RHI/Descriptors/RHIDescriptorPool.h"
 #include "ShaderCompiler/ShaderCompilerAPI.h"
+#include "RHI/Enums/Buffer/EBufferUsage.h"
+#include "RHI/Enums/Memory/ERHIMemoryUsage.h"
+#include "RHI/Enums/Pipeline/EProgramStage.h"
+#include "RHI/Enums/Pipeline/EShaderStage.h"
+#include "RHI/Enums/Pipeline/EPipelineBindPoint.h"
+#include "RHI/Enums/Pipeline/EDescriptorType.h"
+#include "RHI/Descriptors/RHIResourceDescriptors.h"
+#include "RHI/Queues/RHIQueue.h"
+#include "RHI/Enums/Pipeline/ECommandBufferUsageFlagBits.h"
+#include <filesystem>
 
 namespace ArisenEngine::Testing
 {

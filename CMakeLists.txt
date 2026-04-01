@@ -4,8 +4,9 @@ project(Arisen.RHI.Vulkan.Test)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Collect code files
+# Collect code files, excluding internal 3rdparty tests
 file(GLOB_RECURSE ALL_SOURCE_FILES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+list(FILTER ALL_SOURCE_FILES EXCLUDE REGEX ".*/3rdparty/.*/test/.*")
 
 # Collect shader and asset files to include in SLN
 file(GLOB_RECURSE SHADER_FILES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/Shader/*")
@@ -44,13 +45,18 @@ target_include_directories(Arisen.RHI.Vulkan.Test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/cgltf
     ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/image
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../../ArisenKernel/Native # Hypothetical path, need to verify
+    ${CMAKE_CURRENT_SOURCE_DIR}/../com.arisen.rhi.vulkan.native/3rdparty/vulkan/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../com.arisen.rhi.vulkan.native
 )
 
 # Links
 target_link_libraries(Arisen.RHI.Vulkan.Test PRIVATE 
-    Arisen.Core.Native # Assuming core native is available
-    Arisen.RHI.Vulkan.Native
+    Core.Foundation
+    Core.Diagnostic
+    Core.HAL
+    Core.RHI
+    Core.ShaderCompiler
+    RHI.Vulkan
 )
 
 # Export macros if needed

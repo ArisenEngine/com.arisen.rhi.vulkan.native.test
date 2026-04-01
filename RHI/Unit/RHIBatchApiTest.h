@@ -8,6 +8,13 @@
 #include "RHI/Queues/RHIQueueType.h"
 
 #include "RHI/Pipeline/RHIPipelineState.h"
+#include "RHI/Enums/Buffer/EBufferUsage.h"
+#include "RHI/Enums/Memory/ERHIMemoryUsage.h"
+#include "RHI/Descriptors/RHIResourceDescriptors.h"
+#include "RHI/Enums/Memory/ESharingMode.h"
+#include "RHI/Enums/Pipeline/EPipelineStageFlag.h"
+#include "RHI/Enums/Pipeline/EAccessFlag.h"
+#include "RHI/Enums/Pipeline/ECommandBufferUsageFlagBits.h"
 
 namespace ArisenEngine::Testing
 {

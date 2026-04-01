@@ -1,5 +1,5 @@
 #include "../RHITestBase.h"
-#include "../../../../Core/RHI.Vulkan/Commands/RHIVkCommandBuffer.h"
+#include "RHI.Vulkan/Commands/RHIVkCommandBuffer.h"
 #include "RHI/Handles/RHIHandle.h" 
 #include "RHI/Descriptors/RHIResourceDescriptors.h"
 #include "RHI/Queues/RHIQueueType.h"
