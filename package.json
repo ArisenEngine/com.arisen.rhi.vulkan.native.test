@@ -1,0 +1,15 @@
+{
+  "id": "com.arisen.rhi.vulkan.native.test",
+  "name": "Arisen RHI — Vulkan Native Tests",
+  "version": "1.0.0",
+  "description": "Native standalone tests for the Vulkan RHI implementation.",
+  "author": "Arisen Team",
+  "type": "native",
+  "dependencies": {
+    "com.arisen.rhi.vulkan.native": "1.0.0",
+    "com.arisen.core.native": "1.0.0"
+  },
+  "nativeRuntimes": {
+    "win-x64": ["Arisen.RHI.Vulkan.Test.dll"]
+  }
+}
