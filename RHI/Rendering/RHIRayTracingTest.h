@@ -84,7 +84,7 @@ namespace ArisenEngine::Testing
         };
 
     public:
-        const char* GetName() const override { return "RayTracingTest"; }
+        const char* GetName() const override { return "RHIRayTracingTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

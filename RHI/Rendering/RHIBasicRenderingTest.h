@@ -30,7 +30,7 @@ namespace ArisenEngine::Testing
         RHI::ESampleCountFlagBits m_SampleCount = RHI::SAMPLE_COUNT_4_BIT;
 
     public:
-        const char* GetName() const override { return "BasicRenderingTest"; }
+        const char* GetName() const override { return "RHIBasicRenderingTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

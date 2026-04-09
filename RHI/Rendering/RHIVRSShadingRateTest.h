@@ -35,7 +35,7 @@ namespace ArisenEngine::Testing
         RHI::RHIImageViewHandle m_DepthView;
 
     public:
-        const char* GetName() const override { return "VRSShadingRateTest"; }
+        const char* GetName() const override { return "RHIVRSShadingRateTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

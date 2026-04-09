@@ -95,7 +95,7 @@ namespace ArisenEngine::Testing
         }
 
     public:
-        const char* GetName() const override { return "GPUParticleTest"; }
+        const char* GetName() const override { return "RHIGPUParticleTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

@@ -94,7 +94,7 @@ namespace ArisenEngine::Testing
         }
 
     public:
-        const char* GetName() const override { return "MeshShaderTest"; }
+        const char* GetName() const override { return "RHIMeshShaderTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

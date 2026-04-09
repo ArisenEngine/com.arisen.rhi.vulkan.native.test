@@ -48,7 +48,7 @@ namespace ArisenEngine::Testing
         bool m_ShowWireframe = true;
 
     public:
-        const char* GetName() const override { return "TessellationShaderTest"; }
+        const char* GetName() const override { return "RHITessellationShaderTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

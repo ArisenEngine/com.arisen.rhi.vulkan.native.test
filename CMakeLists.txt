@@ -28,15 +28,13 @@ add_library(Arisen.RHI.Vulkan.Test SHARED
 )
 
 # Use POST_BUILD to ensure assets are copied when building in IDEs
-# These will go into the profile's bin folder (e.g., .arisen/bin/Testing/Debug/Assets)
-get_property(OUTPUT_DIR TARGET Arisen.RHI.Vulkan.Test PROPERTY RUNTIME_OUTPUT_DIRECTORY)
-if(NOT OUTPUT_DIR)
-    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}")
-endif()
-
+# These will go into the profile's bin folder (e.g., .arisen/bin/RHIVulkanTesting/Debug/Assets)
+# NOTE: We use $<TARGET_FILE_DIR:...> instead of get_property(RUNTIME_OUTPUT_DIRECTORY)
+# because Visual Studio is a multi-config generator and the per-target property is not set;
+# only CMAKE_RUNTIME_OUTPUT_DIRECTORY_<CONFIG> is set at the project level.
 add_custom_command(TARGET Arisen.RHI.Vulkan.Test POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/Assets" "${OUTPUT_DIR}/Assets"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/Shader" "${OUTPUT_DIR}/Shader"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/Assets" "$<TARGET_FILE_DIR:Arisen.RHI.Vulkan.Test>/Assets"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/Shader" "$<TARGET_FILE_DIR:Arisen.RHI.Vulkan.Test>/Shader"
     COMMENT "Copying internal package assets and shaders to output directory"
 )
 

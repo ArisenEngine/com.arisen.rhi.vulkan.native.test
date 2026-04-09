@@ -29,7 +29,7 @@ namespace ArisenEngine::Testing
         RHI::RHIImageViewHandle m_DepthView;
 
     public:
-        const char* GetName() const override { return "GeometryShaderTest"; }
+        const char* GetName() const override { return "RHIGeometryShaderTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override

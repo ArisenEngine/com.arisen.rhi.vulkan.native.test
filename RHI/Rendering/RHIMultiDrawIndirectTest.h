@@ -51,7 +51,7 @@ namespace ArisenEngine::Testing
         Containers::Vector<MaterialGroup> m_MaterialGroups;
 
     public:
-        const char* GetName() const override { return "MultiDrawIndirectTest"; }
+        const char* GetName() const override { return "RHIMultiDrawIndirectTest"; }
         TestCategory GetCategory() const override { return TestCategory::Rendering; }
 
         bool SetupTest() override
