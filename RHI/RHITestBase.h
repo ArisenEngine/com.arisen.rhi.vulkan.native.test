@@ -258,12 +258,7 @@ namespace ArisenEngine::Testing
             case WM_DESTROY:
                 PostQuitMessage(0);
                 return 0;
-            case WM_KEYDOWN:
-                if (test) test->m_Keys[wParam & 0xFF] = true;
-                return 0;
-            case WM_KEYUP:
-                if (test) test->m_Keys[wParam & 0xFF] = false;
-                return 0;
+
             case WM_LBUTTONDOWN: if (test) test->m_MouseButtons[0] = true;
                 return 0;
             case WM_LBUTTONUP: if (test) test->m_MouseButtons[0] = false;
@@ -310,8 +305,81 @@ namespace ArisenEngine::Testing
                     }
                 }
                 return 0;
+
+            case WM_ENTERSIZEMOVE:
+                if (test)
+                {
+                    LOG_INFO("[RHITestBase]: WM_ENTERSIZEMOVE. Locking input.");
+                    for (int i = 0; i < 3; ++i) test->m_MouseButtons[i] = false;
+                    ReleaseCapture();
+                }
+                return 0;
+            case WM_EXITSIZEMOVE:
+                if (test)
+                {
+                    LOG_INFO("[RHITestBase]: WM_EXITSIZEMOVE. Performing Total Input Reset.");
+                    // Safeguard: Clear ALL possible input/capture states.
+                    for (int i = 0; i < 3; ++i) test->m_MouseButtons[i] = false;
+                    for (int i = 0; i < 256; ++i) test->m_Keys[i] = false;
+                    test->m_MouseDX = 0; test->m_MouseDY = 0;
+                    
+                    ReleaseCapture();
+                    ClipCursor(NULL);
+                    while (ShowCursor(TRUE) < 0); // Ensure cursor is visible
+                    
+                    // Final Sync: Ensure the resolution is correctly set to the final client area size
+                    RECT rect;
+                    if (GetClientRect(hwnd, &rect))
+                    {
+                        UInt32 width = (UInt32)(rect.right - rect.left);
+                        UInt32 height = (UInt32)(rect.bottom - rect.top);
+                        if (width > 0 && height > 0)
+                        {
+                            OnWindowResizeFinished(hwnd, width, height);
+                        }
+                    }
+                }
+                return 0;
+            case WM_KEYDOWN:
+                if (test)
+                {
+                    test->m_Keys[wParam & 0xFF] = true;
+                    if (wParam == VK_ESCAPE)
+                    {
+                        LOG_INFO("[RHITestBase]: ESC pressed. Panic Input Reset.");
+                        ReleaseCapture();
+                        ClipCursor(NULL);
+                        while (ShowCursor(TRUE) < 0);
+                        for (int i = 0; i < 3; ++i) test->m_MouseButtons[i] = false;
+                    }
+                }
+                return 0;
+            case WM_KEYUP:
+                if (test)
+                {
+                    test->m_Keys[wParam & 0xFF] = false;
+                }
+                return 0;
+            case WM_CAPTURECHANGED:
+                if (test && (HWND)lParam != hwnd)
+                {
+                    LOG_INFO("[RHITestBase]: Capture lost externally. Resetting states.");
+                    for (int i = 0; i < 3; ++i) test->m_MouseButtons[i] = false;
+                    ClipCursor(NULL);
+                    while (ShowCursor(TRUE) < 0);
+                }
+                return 0;
+            case WM_PAINT:
+                if (test)
+                {
+                    test->RenderFrame();
+                    ValidateRect(hwnd, NULL);
+                }
+                return 0;
             }
-            return DefWindowProc(hwnd, msg, wParam, lParam);
+            
+            // Return -1 to signal to the HAL that it should call DefWindowProc.
+            return (LRESULT)-1;
         }
 
         static void OnWindowResizing(HWND hwnd, UInt32 width, UInt32 height)

@@ -10,6 +10,7 @@
 #include "../RHI/Unit/RHIInspectorTest.h"
 #include "../RHI/Unit/RHIMultiQueueNativeTest.h"
 #include "../RHI/Unit/RHIMultiQueueResourceDisposalTest.h"
+#include "../RHI/Unit/RHIVkVirtualResizeTest.h"
 
 // Rendering Tests
 #include "../RHI/Rendering/RHIBasicRenderingTest.h"
@@ -50,6 +51,7 @@ extern "C"
         TestRunner::RegisterTest<RHIMemoryAliasingTest>();
         TestRunner::RegisterTest<RHIMultiQueueNativeTest>();
         TestRunner::RegisterTest<RHIMultiQueueResourceDisposalTest>();
+        TestRunner::RegisterTest<RHIVkVirtualResizeTest>();
 
         // Register Rendering Tests
         TestRunner::RegisterTest<RHIBasicRenderingTest>();
@@ -76,6 +78,7 @@ extern "C"
         registerCallback("Vulkan.Native.MemoryAliasingTest", []() { TestRunner::RunTestByName("RHIMemoryAliasingTest"); });
         registerCallback("Vulkan.Native.MultiQueueNativeTest", []() { TestRunner::RunTestByName("RHIMultiQueueNativeTest"); });
         registerCallback("Vulkan.Native.MultiQueueResourceDisposalTest", []() { TestRunner::RunTestByName("RHIMultiQueueResourceDisposalTest"); });
+        registerCallback("Vulkan.Native.VirtualResizeTest", []() { TestRunner::RunTestByName("RHIVkVirtualResizeTest"); });
 
         // --- Rendering Tests ---
         registerCallback("Vulkan.Native.BasicRenderingTest", []() { TestRunner::RunTestByName("RHIBasicRenderingTest"); });
