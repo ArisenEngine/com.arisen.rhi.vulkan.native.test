@@ -190,6 +190,8 @@ namespace ArisenEngine::Testing
                         passed).c_str());
             }
 
+            ArisenEngine::Diagnostics::Logger::GetInstance().Flush();
+
             return results;
         }
 
