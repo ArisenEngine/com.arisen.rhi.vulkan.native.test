@@ -12,5 +12,13 @@
   },
   "nativeRuntimes": {
     "win-x64": ["Arisen.RHI.Vulkan.Test.dll"]
+  },
+  "nativeTests": {
+    "win-x64": [
+      {
+        "library": "Arisen.RHI.Vulkan.Test.dll",
+        "registerExport": "RegisterNativeTests"
+      }
+    ]
   }
 }
