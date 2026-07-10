@@ -75,7 +75,9 @@ namespace ArisenEngine::Testing
             if (imageIndex == 0xFFFFFFFF)
             {
                 LOG_ERROR("Failed to register image with Bindless Manager");
+                m_Device->GetFactory()->ReleaseImageView(testView);
                 m_Device->GetFactory()->ReleaseImage(testImage);
+                m_Device->GetFactory()->UnregisterBindlessResourceBuffer(bufferIndex);
                 m_Device->GetFactory()->ReleaseBuffer(testBuffer);
                 return false;
             }
@@ -85,7 +87,10 @@ namespace ArisenEngine::Testing
             m_Device->DeviceWaitIdle();
 
             // Cleanup
+            m_Device->GetFactory()->UnregisterBindlessResourceImage(imageIndex);
+            m_Device->GetFactory()->ReleaseImageView(testView);
             m_Device->GetFactory()->ReleaseImage(testImage);
+            m_Device->GetFactory()->UnregisterBindlessResourceBuffer(bufferIndex);
             m_Device->GetFactory()->ReleaseBuffer(testBuffer);
 
             LOG_INFO("Bindless Resource Test Passed.");

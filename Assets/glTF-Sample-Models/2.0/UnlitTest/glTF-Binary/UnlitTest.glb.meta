@@ -1,3 +1,3 @@
 Guid: 1ff7f48a-ae84-42fc-83aa-4a30bb475c8b
 AssetType: Mesh
-Importer: ''
+Importer: GltfMeshImporter
