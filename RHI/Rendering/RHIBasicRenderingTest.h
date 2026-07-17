@@ -228,7 +228,7 @@ namespace ArisenEngine::Testing
             m_Pso->SetInputAssemblyState(ia);
 
             RHI::RHIRasterizationState rs{};
-            rs.cullMode = RHI::CULL_MODE_NONE;
+            rs.cullMode = RHI::CULL_MODE_BACK_BIT;
             rs.frontFace = RHI::FRONT_FACE_COUNTER_CLOCKWISE;
             rs.polygonMode = RHI::EPOLYGON_MODE_FILL;
             rs.lineWidth = 1.0f;

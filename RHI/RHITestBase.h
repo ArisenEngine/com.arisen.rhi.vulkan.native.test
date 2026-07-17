@@ -111,13 +111,21 @@ namespace ArisenEngine::Testing
     class RHITestBase : public ITest
     {
     protected:
+        struct RHIInstanceDeleter
+        {
+            void operator()(RHI::RHIInstance* instance) const noexcept
+            {
+                RHI::RHILoader::DestroyInstance(instance);
+            }
+        };
+
         using Clock = std::chrono::high_resolution_clock;
         Clock::time_point lastTime = Clock::now();
         double frameTime = 0.0;
         double fps = 0.0;
         Float32 s_FrameTimeSpacing = 0.0;
 
-        std::unique_ptr<RHI::RHIInstance> m_Instance;
+        std::unique_ptr<RHI::RHIInstance, RHIInstanceDeleter> m_Instance;
         RHI::RHIDevice* m_Device = nullptr;
         UInt32 m_WindowId = ~0u;
         UInt32 m_MaxFramesInFlight = 2;
@@ -558,6 +566,7 @@ namespace ArisenEngine::Testing
 
             if (m_Instance)
             {
+                m_Device = nullptr;
                 m_Instance.reset();
             }
 
